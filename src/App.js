@@ -1,9 +1,15 @@
-import './App.css';
+import { MDBRow } from "mdbreact";
+import "./App.css";
+import Card from "./Components/Card";
 
 function App() {
   return (
     <>
-      Parts
+      <div>
+        <MDBRow className="row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+          <Card />
+        </MDBRow>
+      </div>
     </>
   );
 }
