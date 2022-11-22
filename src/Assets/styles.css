@@ -1,0 +1,12 @@
+.border-5{
+    border-radius: 5% !important;
+}
+
+.image-border{
+    border-radius: 1.5rem !important;
+}
+
+.card-footer{
+    height: 4rem;
+    background-color: rgb(238, 239, 239);
+}
