@@ -1,6 +1,6 @@
 import axios from "axios";
 import { MDBRow } from "mdbreact";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Card from "./Components/Card";
 
