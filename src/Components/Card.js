@@ -2,40 +2,43 @@ import React from "react";
 import {
   MDBCard,
   MDBCardImage,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
   MDBCol,
   MDBCardHeader,
-  MDBFooter,
   MDBBtn,
   MDBIcon,
   MDBBadge,
 } from "mdb-react-ui-kit";
+import { calculatePercent, roundof } from "../Assets/utils";
 
-const Card = () => {
+const Card = (props) => {
+  const { partData } = props;
   return (
     <MDBCol>
       <MDBCard className="border-5">
+        {/* Card Header */}
         <MDBCardHeader>
           <div className="row">
-            <div className="col-9">Card Header Name</div>
-            <div className="col-3">CHM...</div>
+            <div className="col-9">{partData?.part_number}</div>
+            <div className="col-3 d-flex justify-content-end">...</div>
           </div>
         </MDBCardHeader>
 
         <MDBCardImage
-          src="https://mdbootstrap.com/img/new/standard/city/041.webp"
+          src={partData?.thumbnail_url}
           alt="..."
           position="top"
-          className="p-2 image-border"
+          className="p-2 image image-border"
         />
 
         {/* Labels and View Inference */}
 
         <div className="row d-flex justify-content-around">
           <div className="col-9">
-            <MDBBadge pill color='success' light>Automotive</MDBBadge>
+            {partData?.tags.map((tag, index) => (
+              <MDBBadge key={`${index}-${tag}`} className="text-small" pill color="success" light>
+                {tag}
+              </MDBBadge>
+            ))}
           </div>
           <div className="col-3">
             <MDBBtn>
@@ -47,17 +50,17 @@ const Card = () => {
         {/* Card Info */}
         <div className="row d-flex text-center justify-content-around mt-3">
           <div className="col-3">
-            <p>Labelled</p>
+            <p className="text-small">Labelled</p>
             <p className="fs-4">
-              10<span>%</span>
+              {partData?.label_info?.total_images ? calculatePercent(partData?.label_info?.total_labeled_images, partData?.label_info?.total_images) : 0}<span className="text-small">%</span>
             </p>
           </div>
           <div className="col-3">
-            <p>Version</p>
+            <p className="text-small">Version</p>
             <p className="fs-4">5</p>
           </div>
           <div className="col-3">
-            <p>Faility</p>
+            <p className="text-small">Faility</p>
             <p className="fs-4">2</p>
           </div>
         </div>
@@ -66,7 +69,7 @@ const Card = () => {
         <div className="mb-2 mx-2 row text-center card-footer image-border p-1 ">
           <div className="col-9 row">
             <div className="col-5 d-flex align-items-center">
-              <p className="fs-4 m-0">X%</p>
+              <p className="fs-5 m-0">{partData?.experiments?.length ? (roundof(partData?.experiments?.[0]?.yolo_final_MAP)) : `-`}<span className="text-small">%</span></p>
             </div>
             <div className="col-7 d-flex align-items-center">Accuracy</div>
           </div>
